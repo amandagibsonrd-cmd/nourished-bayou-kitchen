@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nourished Bayou Kitchen | In-Home Cooking Workshops</title>
+
+  <style>
+    #nbk-root{
+      width:100%;
+      max-width:100%;
+      margin:0;
+      padding:0;
+      background:
+        url("https://www.transparenttextures.com/patterns/linen.png"),
+        #F5EFE7;
+
+      --paper:#FBF7F1;
+      --ink:#2E2A26;
+      --muted:#6F675F;
+      --line:rgba(43,42,40,.18);
+      --shadow:0 14px 35px rgba(0,0,0,.12);
+
+      --navy:#1F3F5B;
+      --terracotta:#C4653D;
+      --sage:#7C8B6A;
+
+      --radius:18px;
+      --radius-lg:24px;
+
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--ink);
+    }
+
+    #nbk-root *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      background:#F5EFE7;
+    }
+
+    #nbk{
+      width:100%;
+      max-width:1200px;
+      margin:0 auto;
+      padding:20px 14px 36px;
+    }
+
+    .nbk-topbar{
+      background:rgba(251,246,239,.84);
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:10px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      backdrop-filter:blur(10px);
+      box-shadow:0 10px 22px rgba(0,0,0,.06);
+    }
+
+    .nbk-brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+
+    .nbk-mark{
+      width:34px;
+      height:34px;
+      border-radius:10px;
+      background:linear-gradient(135deg,#1F3F5B,#C4653D);
+      box-shadow:0 10px 20px rgba(0,0,0,.10);
+      flex:0 0 auto;
+    }
+
+    .nbk-brand small{
+      display:block;
+      font-weight:600;
+      color:var(--muted);
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-size:10px;
+      margin-top:2px;
+    }
+
+    .nbk-nav{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .nbk-nav a{
+      color:var(--muted);
+      font-weight:700;
+      font-size:14px;
+      padding:8px 10px;
+      border-radius:999px;
+      text-decoration:none;
+    }
+
+    .nbk-nav a:hover{
+      color:var(--ink);
+      background:rgba(0,0,0,.04);
+    }
+
+    .nbk-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:11px 15px;
+      border-radius:999px;
+      font-weight:800;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--ink);
+      text-decoration:none;
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+      white-space:nowrap;
+    }
+
+    .nbk-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 12px 28px rgba(0,0,0,.15);
+    }
+
+    .nbk-btn.primary{
+      background:var(--terracotta);
+      color:#fff;
+      border-color:transparent;
+    }
+
+    .nbk-btn.navy{
+      background:var(--navy);
+      color:#fff;
+      border-color:transparent;
+    }
+
+    .nbk-hero{
+      margin-top:14px;
+      border-radius:var(--radius-lg);
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      position:relative;
+      min-height:540px;
+    }
+
+    .nbk-hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0,0,0,.66) 0%,
+          rgba(0,0,0,.46) 35%,
+          rgba(0,0,0,.20) 60%,
+          rgba(0,0,0,.02) 82%
+        ),
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,.04) 0%,
+          rgba(0,0,0,.14) 60%,
+          rgba(245,239,231,.90) 100%
+        ),
+        url("hero.jpg") center/cover no-repeat;
+    }
+
+    .nbk-hero-inner{
+      position:relative;
+      padding:100px 40px 60px;
+      display:grid;
+      grid-template-columns:1.1fr .7fr;
+      gap:20px;
+      align-items:end;
+      min-height:540px;
+    }
+
+    .nbk-hero-copy{
+      max-width:540px;
+      background:rgba(0,0,0,.28);
+      backdrop-filter:blur(6px);
+      padding:28px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.18);
+    }
+
+    .nbk-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:rgba(255,255,255,.90);
+      font-weight:800;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-size:11px;
+      margin-bottom:14px;
+    }
+
+    .nbk-kicker span{
+      width:40px;
+      height:1px;
+      background:rgba(255,255,255,.60);
+    }
+
+    .nbk-h1{
+      margin:0 0 14px;
+      font-size:60px;
+      line-height:1.05;
+      color:#fff;
+      font-weight:900;
+      text-shadow:0 6px 18px rgba(0,0,0,.45);
+      letter-spacing:-.02em;
+    }
+
+    .nbk-sub{
+      margin:0 0 18px;
+      color:rgba(255,255,255,.96);
+      font-size:17px;
+      line-height:1.55;
+      max-width:56ch;
+    }
+
+    .nbk-cta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+
+    .nbk-serve{
+      margin-top:14px;
+      color:rgba(255,255,255,.85);
+      font-weight:700;
+      font-size:13px;
+      letter-spacing:.02em;
+    }
+
+    .nbk-snapshot{
+      background:rgba(251,247,241,.92);
+      border:1px solid rgba(255,255,255,.4);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:0 18px 40px rgba(0,0,0,.18);
+      max-width:320px;
+      justify-self:end;
+    }
+
+    .nbk-snapshot h3{
+      margin:0 0 10px;
+      color:var(--navy);
+      font-size:18px;
+    }
+
+    .nbk-pill{
+      margin:8px 0;
+      color:var(--muted);
+      font-weight:700;
+      font-size:14px;
+      line-height:1.4;
+    }
+
+    .nbk-pill b{
+      color:var(--ink);
+    }
+
+    .nbk-note{
+      color:var(--muted);
+      font-size:12.5px;
+      margin-top:10px;
+    }
+
+    .nbk-section{
+      margin-top:18px;
+      background:rgba(251,246,239,.84);
+      border:1px solid var(--line);
+      border-radius:var(--radius-lg);
+      padding:28px 22px;
+      box-shadow:0 10px 22px rgba(0,0,0,.05);
+    }
+
+    .nbk-section h2{
+      margin:0 0 8px;
+      text-align:center;
+      font-size:28px;
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+
+    .nbk-divider{
+      width:150px;
+      height:2px;
+      background:rgba(124,139,106,.35);
+      margin:10px auto 20px;
+      border-radius:999px;
+    }
+
+    .nbk-center-copy{
+      text-align:center;
+      max-width:760px;
+      margin:0 auto;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .nbk-steps{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:20px;
+    }
+
+    .nbk-step{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:18px;
+    }
+
+    .nbk-step .num{
+      color:var(--terracotta);
+      font-weight:900;
+      font-size:22px;
+      margin-bottom:6px;
+    }
+
+    .nbk-step h3{
+      margin:6px 0 8px;
+      font-size:16px;
+    }
+
+    .nbk-step p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .nbk-cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:22px;
+    }
+
+    .nbk-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:0 12px 26px rgba(0,0,0,.08);
+      display:flex;
+      flex-direction:column;
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+
+    .nbk-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 20px 40px rgba(0,0,0,.14);
+    }
+
+    .nbk-thumb{
+      height:170px;
+      background:#ddd center/cover no-repeat;
+      transition:transform .4s ease;
+    }
+
+    .nbk-card:hover .nbk-thumb{
+      transform:scale(1.05);
+    }
+
+    .t1{
+      background-image:url("https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1400&q=80");
+    }
+
+    .t2{
+      background-image:url("https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=1400&q=80");
+    }
+
+    .t3{
+      background-image:url("https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?auto=format&fit=crop&w=1400&q=80");
+    }
+
+    .nbk-body{
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      flex:1;
+      border-top:1px solid rgba(0,0,0,.05);
+    }
+
+    .nbk-body h3{
+      margin:0;
+      color:var(--navy);
+      font-size:19px;
+    }
+
+    .nbk-meta{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .nbk-body ul{
+      margin:0;
+      padding-left:18px;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .nbk-body li{
+      margin:6px 0;
+    }
+
+    .nbk-card .nbk-btn{
+      width:100%;
+      margin-top:auto;
+      font-size:14px;
+      padding:10px 14px;
+    }
+
+    .nbk-pill-highlight{
+      display:inline-block;
+      background:rgba(196,101,61,.12);
+      color:#1F3F5B;
+      font-weight:700;
+      font-size:14px;
+      line-height:1.45;
+      padding:10px 16px;
+      border-radius:999px;
+      margin-top:10px;
+      border:1px solid rgba(196,101,61,.25);
+    }
+
+    .price-pill{
+      background:rgba(31,63,91,.10);
+      border:1px solid rgba(31,63,91,.25);
+    }
+
+    .host-pill{
+      background:rgba(124,139,106,.12);
+      border:1px solid rgba(124,139,106,.25);
+    }
+
+    .nbk-host{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:18px;
+      align-items:stretch;
+      margin-top:20px;
+    }
+
+    .nbk-hostbox{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:18px;
+    }
+
+    .nbk-hostbox h3{
+      margin:0 0 10px;
+      font-size:20px;
+      color:var(--navy);
+    }
+
+    .nbk-check{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+
+    .nbk-check li{
+      display:flex;
+      gap:10px;
+      margin:10px 0;
+      font-size:14.5px;
+      line-height:1.5;
+    }
+
+    .nbk-check li::before{
+      content:"✓";
+      color:var(--terracotta);
+      font-weight:900;
+      margin-top:1px;
+    }
+
+    .nbk-hostphoto{
+      border-radius:var(--radius);
+      border:1px solid var(--line);
+      overflow:hidden;
+      min-height:280px;
+      background:#ddd center/cover no-repeat;
+      background-image:url("https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1600&q=80");
+    }
+
+    .nbk-perk{
+      margin-top:12px;
+      background:rgba(196,101,61,.10);
+      border:1px dashed rgba(196,101,61,.55);
+      border-radius:14px;
+      padding:10px 12px;
+      font-weight:800;
+      font-size:13.5px;
+      line-height:1.5;
+    }
+
+    .nbk-faq{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      margin-top:20px;
+    }
+
+    #nbk-root details{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:14px 16px;
+    }
+
+    #nbk-root summary{
+      cursor:pointer;
+      font-weight:900;
+      color:var(--navy);
+    }
+
+    #nbk-root details p{
+      margin:10px 0 0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .nbk-cta2{
+      margin-top:18px;
+      background:linear-gradient(135deg, rgba(31,63,91,.14), rgba(196,101,61,.14));
+      border:1px solid var(--line);
+      border-radius:var(--radius-lg);
+      padding:22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .nbk-cta2 h3{
+      margin:0;
+      font-size:22px;
+      color:var(--navy);
+    }
+
+    .nbk-cta2 p{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+      max-width:70ch;
+    }
+
+    .nbk-footer{
+      text-align:center;
+      color:rgba(43,42,40,.65);
+      font-size:12.5px;
+      padding-top:14px;
+    }
+
+    @media (max-width:980px){
+      .nbk-nav{display:none}
+      .nbk-hero-inner{
+        grid-template-columns:1fr;
+        padding:70px 20px 40px;
+        min-height:auto;
+      }
+      .nbk-h1{font-size:40px}
+      .nbk-sub{font-size:16px}
+      .nbk-snapshot{
+        justify-self:start;
+        max-width:100%;
+        margin-top:12px;
+      }
+      .nbk-steps,
+      .nbk-cards,
+      .nbk-host,
+      .nbk-faq{
+        grid-template-columns:1fr;
+      }
+      #nbk{
+        padding-left:10px;
+        padding-right:10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="nbk-root">
+    <div id="nbk">
+
+      <div class="nbk-topbar">
+        <div class="nbk-brand">
+          <div class="nbk-mark"></div>
+          <div>
+            Nourished Bayou Kitchen
+            <small>in-home workshops</small>
+          </div>
+        </div>
+
+        <div class="nbk-nav">
+          <a href="#pricing">Pricing</a>
+          <a href="#themes">Themes</a>
+          <a href="#how">How It Works</a>
+          <a href="#expect">What to Expect</a>
+          <a href="#faqs">FAQs</a>
+          <a class="nbk-btn primary" href="#book">Book a Workshop</a>
+        </div>
+      </div>
+
+      <section class="nbk-hero">
+        <div class="nbk-hero-inner">
+          <div class="nbk-hero-copy">
+            <div class="nbk-kicker">
+              <span></span>
+              In-Home Cooking Workshops
+              <span></span>
+            </div>
+
+            <h1 class="nbk-h1">
+              A Cooking Night<br />
+              Worth Gathering For
+            </h1>
+
+            <p class="nbk-sub">
+              Invite your friends, choose a theme, and enjoy a relaxed hands-on cooking
+              experience led by a Registered Dietitian. Learn practical nutrition
+              naturally as you cook with no dieting, no pressure, just real food and a
+              memorable evening together.
+            </p>
+
+            <div class="nbk-cta">
+              <a class="nbk-btn primary" href="#book">Book a Workshop</a>
+              <a class="nbk-btn navy" href="#themes">View Themes</a>
+            </div>
+
+            <div class="nbk-serve">
+              Serving Houma, Thibodaux and the Bayou Region
+            </div>
+          </div>
+
+          <aside class="nbk-snapshot">
+            <h3>Perfect for</h3>
+            <div class="nbk-pill"><b>Girls’ night</b> • couples nights • small groups</div>
+            <div class="nbk-pill"><b>90 minutes</b> • relaxed and hands-on</div>
+            <div class="nbk-pill"><b>2–3 recipes</b> prepared together</div>
+            <div class="nbk-pill"><b>6–10 guests</b> ideal group size</div>
+            <div class="nbk-note">Includes a recipe packet for each guest.</div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="nbk-section" id="pricing">
+        <h2>Private Workshop Pricing</h2>
+        <div class="nbk-divider"></div>
+
+        <p class="nbk-center-copy">
+          A relaxed, hands-on cooking experience led by a Registered Dietitian.
+          Perfect for small groups who want to cook, learn, and enjoy a meal together.
+        </p>
+
+        <div class="nbk-cards" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
+          <div class="nbk-card">
+            <div class="nbk-body">
+              <h3>In-Home Cooking Workshop</h3>
+              <p style="font-size:32px; font-weight:900; color:var(--terracotta); margin:0;">$550</p>
+
+              <div class="nbk-pill-highlight price-pill">
+                When split between guests, most workshops cost about $65–70 per person
+              </div>
+
+              <div class="nbk-pill-highlight host-pill">
+                Host perk: choose from a curated list of workshop recipes
+              </div>
+
+              <p class="nbk-meta" style="margin-top:4px;"><b>Includes:</b></p>
+              <ul>
+                <li>90-minute hands-on cooking workshop</li>
+                <li>Up to 8 participants</li>
+                <li>2–3 recipes prepared together</li>
+                <li>Practical nutrition education during cooking</li>
+                <li>Printed recipe packet for each guest</li>
+              </ul>
+
+              <p class="nbk-meta"><b>Additional guests:</b> $25 per person</p>
+
+              <a class="nbk-btn primary" href="#book">Request a Workshop</a>
+            </div>
+          </div>
+
+          <div class="nbk-card">
+            <div class="nbk-body">
+              <h3>Ingredient Add-On</h3>
+              <p style="font-size:32px; font-weight:900; color:var(--navy); margin:0;">Optional</p>
+
+              <p class="nbk-meta">For hosts who prefer not to shop.</p>
+              <ul>
+                <li>I bring all ingredients needed for the workshop</li>
+                <li>Fresh produce, proteins, and pantry items</li>
+                <li>Measured and ready for the class</li>
+              </ul>
+
+              <p class="nbk-meta"><b>Ingredient package:</b> $75–$150 depending on menu.</p>
+
+              <a class="nbk-btn navy" href="#book">Ask About This Option</a>
+            </div>
+          </div>
+
+          <div class="nbk-card">
+            <div class="nbk-body">
+              <h3>Travel</h3>
+              <p style="font-size:32px; font-weight:900; color:var(--navy); margin:0;">Local Area</p>
+
+              <ul>
+                <li>Workshops within the Houma / Bayou area included</li>
+                <li>Travel beyond 25 miles may include a small travel fee</li>
+              </ul>
+
+              <p class="nbk-meta">If you are unsure, feel free to reach out and ask about your location.</p>
+
+              <a class="nbk-btn navy" href="#book">Check Availability</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="nbk-section" id="themes">
+        <h2>Choose Your Theme</h2>
+        <div class="nbk-divider"></div>
+
+        <div class="nbk-cards">
+          <div class="nbk-card">
+            <div class="nbk-thumb t1"></div>
+            <div class="nbk-body">
+              <h3>Weeknight Easy Meals</h3>
+              <p class="nbk-meta">
+                <b>Best for:</b> busy families, overwhelmed cooks, and anyone tired of figuring out dinner.
+              </p>
+              <ul>
+                <li>Sheet-pan dinner with protein and vegetables</li>
+                <li>20-minute skillet meal</li>
+                <li>Simple sauce you can reuse all week</li>
+              </ul>
+              <p class="nbk-meta">
+                <b>Nutrition topics may include:</b> building balanced dinners, simple meal structure, and making weeknight cooking easier.
+              </p>
+              <a class="nbk-btn navy" href="#book">Book This Theme</a>
+            </div>
+          </div>
+
+          <div class="nbk-card">
+            <div class="nbk-thumb t2"></div>
+            <div class="nbk-body">
+              <h3>Flexible Meal Prep (Not Miserable)</h3>
+              <p class="nbk-meta">
+                <b>Best for:</b> people who want to meal prep without eating the same meal every day.
+              </p>
+              <ul>
+                <li>Batch roasted vegetables</li>
+                <li>Grain base such as rice, quinoa, or potatoes</li>
+                <li>Protein option such as beans, chicken, or shrimp</li>
+                <li>Two flavor boosters such as a sauce and dressing</li>
+              </ul>
+              <p class="nbk-meta">
+                <b>Nutrition topics may include:</b> mix-and-match meal prep, balanced meal components, and reducing food stress during the week.
+              </p>
+              <a class="nbk-btn navy" href="#book">Book This Theme</a>
+            </div>
+          </div>
+
+          <div class="nbk-card">
+            <div class="nbk-thumb t3"></div>
+            <div class="nbk-body">
+              <h3>Balanced Meals Made Simple</h3>
+              <p class="nbk-meta">
+                <b>Best for:</b> steady energy, fewer cravings, and anyone wanting simple meals that satisfy.
+              </p>
+              <ul>
+                <li>Balanced bowl or plate-style meal</li>
+                <li>Vegetable side that actually tastes good</li>
+                <li>Quick sauce or dressing to bring everything together</li>
+              </ul>
+              <p class="nbk-meta">
+                <b>Nutrition topics may include:</b> protein, fiber, healthy fats, steady energy, and satisfying meals without complicated rules.
+              </p>
+              <a class="nbk-btn navy" href="#book">Book This Theme</a>
+            </div>
+          </div>
+        </div>
+
+        <p class="nbk-center-copy" style="margin-top:16px; font-weight:700;">
+          All themes include a 90-minute workshop, 2–3 recipes cooked together,
+          a printable recipe packet for each guest, and relaxed nutrition discussion during tasting.
+        </p>
+      </section>
+
+      <section class="nbk-section" id="how">
+        <h2>How It Works</h2>
+        <div class="nbk-divider"></div>
+
+        <div class="nbk-steps">
+          <div class="nbk-step">
+            <div class="num">1.</div>
+            <h3>Pick Your Theme</h3>
+            <p>Choose a beginner-friendly topic that fits your group and the kind of evening you want to host.</p>
+          </div>
+
+          <div class="nbk-step">
+            <div class="num">2.</div>
+            <h3>Gather Your Group</h3>
+            <p>Invite 6–10 friends to your home or chosen space for a relaxed evening of cooking and learning.</p>
+          </div>
+
+          <div class="nbk-step">
+            <div class="num">3.</div>
+            <h3>Cook and Enjoy</h3>
+            <p>Prepare recipes together, learn practical nutrition naturally, and enjoy the meal in a welcoming environment.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="nbk-section" id="expect">
+        <h2>What to Expect</h2>
+        <div class="nbk-divider"></div>
+
+        <p class="nbk-center-copy">
+          Every workshop is designed to feel relaxed, welcoming, and practical.
+          You do not need to be an experienced cook to enjoy it.
+        </p>
+
+        <div class="nbk-steps">
+          <div class="nbk-step">
+            <h3>A relaxed, hands-on experience</h3>
+            <p>
+              This is not a lecture. We cook together in a comfortable, real-life kitchen setting
+              with plenty of room for questions and conversation.
+            </p>
+          </div>
+
+          <div class="nbk-step">
+            <h3>Simple nutrition education woven into the cooking</h3>
+            <p>
+              As we prepare the meal, I share practical nutrition tips in a way that feels natural,
+              helpful, and easy to apply at home.
+            </p>
+          </div>
+
+          <div class="nbk-step">
+            <h3>Food that feels realistic and satisfying</h3>
+            <p>
+              The focus is always on meals that are approachable, flavorful, and supportive of everyday life,
+              not perfection, dieting, or rigid food rules.
+            </p>
+          </div>
+        </div>
+
+        <p class="nbk-center-copy" style="margin-top:18px; font-weight:700;">
+          Guests leave with new cooking confidence, practical ideas, and recipes they can actually use again.
+        </p>
+      </section>
+
+      <section class="nbk-section" id="host">
+        <h2>Host a Cooking Night</h2>
+        <div class="nbk-divider"></div>
+
+        <div class="nbk-host">
+          <div class="nbk-hostbox">
+            <h3>Perfect for</h3>
+            <ul class="nbk-check">
+              <li>Girls’ night or ladies’ groups</li>
+              <li>Couples night or friends gatherings</li>
+              <li>Social clubs and small groups</li>
+              <li>Wellness gatherings</li>
+            </ul>
+
+            <div class="nbk-perk">
+              Host thank-you: choose from a curated list of workshop recipes for your event.
+            </div>
+          </div>
+
+          <div class="nbk-hostphoto"></div>
+        </div>
+      </section>
+
+      <section class="nbk-section" id="faqs">
+        <h2>Frequently Asked Questions</h2>
+        <div class="nbk-divider"></div>
+
+        <div class="nbk-faq">
+          <details>
+            <summary>Do you bring ingredients?</summary>
+            <p>
+              By default, the host provides groceries from a simple list. An ingredient add-on is also available if you would prefer for me to bring everything needed.
+            </p>
+          </details>
+
+          <details>
+            <summary>Is it beginner-friendly?</summary>
+            <p>
+              Yes. These workshops are relaxed, hands-on, and designed for real-life home cooks. No prior cooking experience is required.
+            </p>
+          </details>
+
+          <details>
+            <summary>Can you accommodate allergies or dietary needs?</summary>
+            <p>
+              Yes. Menus can be adjusted for common needs such as gluten-free, dairy-free, or vegetarian preferences.
+            </p>
+          </details>
+
+          <details>
+            <summary>Is this nutrition counseling?</summary>
+            <p>
+              This is cooking education led by a Registered Dietitian. It is practical, skill-based, and food-forward rather than one-on-one nutrition counseling.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="nbk-cta2" id="book">
+        <div>
+          <h3>Ready to host a cooking night?</h3>
+          <p>
+            Choose your theme, pick a date, and I’ll send a simple host checklist.
+            You bring your people and we’ll make it practical, welcoming, and delicious.
+          </p>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="nbk-btn primary" href="mailto:hello@example.com?subject=Workshop%20Booking%20Request">Request a Workshop</a>
+          <a class="nbk-btn navy" href="#themes">View Themes</a>
+        </div>
+      </section>
+
+      <div class="nbk-footer">
+        © <span id="nbk-year"></span> Nourished Bayou Kitchen • In-home workshops led by a Registered Dietitian
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("nbk-year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
