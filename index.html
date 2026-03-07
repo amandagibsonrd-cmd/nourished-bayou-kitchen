@@ -6,31 +6,23 @@
   <title>Nourished Bayou Kitchen | In-Home Cooking Workshops</title>
 
   <style>
-    #nbk-root{
-      width:100%;
-      max-width:100%;
-      margin:0;
-      padding:0;
-      background:
-        url("https://www.transparenttextures.com/patterns/linen.png"),
-        #F5EFE7;
+   #nbk-root{
+  background:#ffffff;
 
-      --paper:#FBF7F1;
-      --ink:#2E2A26;
-      --muted:#6F675F;
-      --line:rgba(43,42,40,.18);
-      --shadow:0 14px 35px rgba(0,0,0,.12);
+  --paper:#f7f7f7;
+  --ink:#2E2A26;
+  --muted:#6F675F;
 
-      --navy:#1F3F5B;
-      --terracotta:#C4653D;
-      --sage:#7C8B6A;
+  --navy:#1F3F5B;
+  --terracotta:#C4653D;
+  --sage:#7C8B6A;
 
-      --radius:18px;
-      --radius-lg:24px;
+  --radius:18px;
+  --radius-lg:24px;
 
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--ink);
-    }
+  font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--ink);
+}
 
     #nbk-root *{box-sizing:border-box}
 
@@ -107,24 +99,21 @@
       background:rgba(0,0,0,.04);
     }
 
-    .nbk-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:11px 15px;
-      border-radius:999px;
-      font-weight:800;
-      border:1px solid var(--line);
-      background:#fff;
-      color:var(--ink);
-      text-decoration:none;
-      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
-      white-space:nowrap;
+  .nbk-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:11px 18px;
+    border-radius:999px;
+    font-weight:800;
+    border:none;
+    text-decoration:none;
+    transition:transform .15s ease, box-shadow .15s ease;
     }
 
-    .nbk-btn:hover{
-      transform:translateY(-2px);
-      box-shadow:0 12px 28px rgba(0,0,0,.15);
+  .nbk-btn:hover{
+    transform:translateY(-1px);
+    box-shadow:0 8px 18px rgba(0,0,0,.12);
     }
 
     .nbk-btn.primary{
@@ -144,7 +133,7 @@
       border-radius:var(--radius-lg);
       overflow:hidden;
       border:1px solid var(--line);
-      box-shadow:var(--shadow);
+      box-shadow:0 20px 50px rgba(0,0,0,.18);
       position:relative;
       min-height:540px;
     }
@@ -274,13 +263,13 @@
       margin-top:10px;
     }
 
-    .nbk-section{
-      margin-top:18px;
-      background:rgba(251,246,239,.84);
-      border:1px solid var(--line);
+     .nbk-section{
+      margin-top:26px;
+      background:#ffffff;
+      border:1px solid rgba(0,0,0,.06);
       border-radius:var(--radius-lg);
-      padding:28px 22px;
-      box-shadow:0 10px 22px rgba(0,0,0,.05);
+      padding:26px 24px;
+      box-shadow:0 8px 28px rgba(0,0,0,.06);
     }
 
     .nbk-section h2{
@@ -348,20 +337,19 @@
     }
 
     .nbk-card{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      overflow:hidden;
-      box-shadow:0 12px 26px rgba(0,0,0,.08);
-      display:flex;
-      flex-direction:column;
-      transition:transform .25s ease, box-shadow .25s ease;
+    background:#ffffff;
+    border:1px solid rgba(0,0,0,.06);
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:0 12px 28px rgba(0,0,0,.08);
+    transition:transform .18s ease, box-shadow .18s ease;
     }
 
     .nbk-card:hover{
-      transform:translateY(-6px);
-      box-shadow:0 20px 40px rgba(0,0,0,.14);
+    transform:translateY(-4px);
+    box-shadow:0 18px 40px rgba(0,0,0,.12);
     }
+    
 
     .nbk-thumb{
       height:170px;
@@ -631,9 +619,9 @@
             </div>
 
             <h1 class="nbk-h1">
-              A Cooking Night<br />
-              Worth Gathering For
-            </h1>
+              Host a Cooking Night<br/></h1>
+              <p style="font-size 34px; font-weight:900; color:var(--terracotta); margin:0;">with a Registered Dietitian</p>
+            
 
             <p class="nbk-sub">
               Invite your friends, choose a theme, and enjoy a relaxed hands-on cooking
@@ -750,9 +738,9 @@
                 <b>Best for:</b> busy families, overwhelmed cooks, and anyone tired of figuring out dinner.
               </p>
               <ul>
-                <li>Sheet-pan dinner with protein and vegetables</li>
-                <li>20-minute skillet meal</li>
-                <li>Simple sauce you can reuse all week</li>
+                <li>30 minute or less recipes</li>
+                <li>Nourishing food that satisfies</li>
+                <li>Family friendly foods</li>
               </ul>
               <p class="nbk-meta">
                 <b>Nutrition topics may include:</b> building balanced dinners, simple meal structure, and making weeknight cooking easier.
@@ -764,15 +752,15 @@
           <div class="nbk-card">
             <div class="nbk-thumb t2"></div>
             <div class="nbk-body">
-              <h3>Flexible Meal Prep (Not Miserable)</h3>
+              <h3>Meal Prep Made Easy</h3>
               <p class="nbk-meta">
                 <b>Best for:</b> people who want to meal prep without eating the same meal every day.
               </p>
               <ul>
-                <li>Batch roasted vegetables</li>
-                <li>Grain base such as rice, quinoa, or potatoes</li>
-                <li>Protein option such as beans, chicken, or shrimp</li>
-                <li>Two flavor boosters such as a sauce and dressing</li>
+                <li>Batch cooking</li>
+                <li>Food group balance</li>
+                <li>Flexible recipes</li>
+                
               </ul>
               <p class="nbk-meta">
                 <b>Nutrition topics may include:</b> mix-and-match meal prep, balanced meal components, and reducing food stress during the week.
@@ -791,7 +779,7 @@
               <ul>
                 <li>Balanced bowl or plate-style meal</li>
                 <li>Vegetable side that actually tastes good</li>
-                <li>Quick sauce or dressing to bring everything together</li>
+                <li>Nutrient dense and delicious</li>
               </ul>
               <p class="nbk-meta">
                 <b>Nutrition topics may include:</b> protein, fiber, healthy fats, steady energy, and satisfying meals without complicated rules.
@@ -880,14 +868,14 @@
           <div class="nbk-hostbox">
             <h3>Perfect for</h3>
             <ul class="nbk-check">
-              <li>Girls’ night or ladies’ groups</li>
+              <li>Girls’ night or groups</li>
               <li>Couples night or friends gatherings</li>
               <li>Social clubs and small groups</li>
               <li>Wellness gatherings</li>
             </ul>
 
             <div class="nbk-perk">
-              Host thank-you: choose from a curated list of workshop recipes for your event.
+              Hosting Perk: choose from a curated list of workshop recipes for your event.
             </div>
           </div>
 
