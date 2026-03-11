@@ -452,6 +452,32 @@
       font-family: Arial, Helvetica, sans-serif;
     }
 
+    .floating-book {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 60;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      padding: 0.9rem 1.2rem;
+      background: var(--deep);
+      color: var(--white);
+      box-shadow: 0 18px 40px rgba(16, 42, 67, 0.24);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: 1px solid rgba(16, 42, 67, 0.1);
+      transition: 0.25s ease;
+    }
+
+    .floating-book:hover {
+      transform: translateY(-1px);
+      background: var(--navy);
+      color: var(--white);
+    }
+
     .cta-box {
       background: linear-gradient(135deg, rgba(63,107,98,0.14), rgba(255,255,255,0.72));
       border: 1px solid rgba(16, 42, 67, 0.10);
@@ -480,6 +506,13 @@
     }
 
     @media (max-width: 640px) {
+      .floating-book {
+        right: 0.75rem;
+        left: 0.75rem;
+        bottom: 0.75rem;
+        width: auto;
+      }
+
       .hero { padding-top: 4rem; }
       h1 {
         max-width: 100%;
@@ -530,7 +563,7 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <span class="eyebrow">Virtual nutrition counseling first</span>
-          <h1>Practical nutrition support for real life.</h1>
+          <h1>Practical nutrition counseling for real life.</h1>
           <p class="lead">Nourished Bayou Nutrition offers one-on-one virtual counseling designed to help adults build sustainable habits, feel more confident around food, and create a way of eating that actually fits everyday life. In-home kitchen workshops are also available for select group experiences.</p>
           <div class="hero-actions">
             <a href="#contact" class="btn btn-primary">Book a Discovery Call</a>
@@ -538,7 +571,7 @@
           </div>
           <div class="hero-note">All counseling sessions are virtual. Kitchen workshops are scheduled separately after the discovery call based on location, group size, and availability.</div>
           <div class="subtle-grid">
-            <div class="card"><div class="mini-label">Virtual care</div><h3 style="font-size:1.08rem; margin-bottom:0.4rem;">One-on-one support</h3><p class="muted">Personalized counseling designed around your routine, goals, and real-life needs.</p></div>
+            <div class="card"><div class="mini-label">Virtual care</div><h3 style="font-size:1.08rem; margin-bottom:0.4rem;">One-on-one support</h3><p class="muted">Personalized counseling built around your routine and real-life needs.</p></div>
             <div class="card"><div class="mini-label">Separate service</div><h3 style="font-size:1.08rem; margin-bottom:0.4rem;">Kitchen workshops</h3><p class="muted">Hands-on in-home group experiences that are not part of counseling sessions.</p></div>
             <div class="card"><div class="mini-label">Start here</div><h3 style="font-size:1.08rem; margin-bottom:0.4rem;">Discovery call</h3><p class="muted">A simple first step to decide which service best fits your goals.</p></div>
             <div class="card"><div class="mini-label">Location</div><h3 style="font-size:1.08rem; margin-bottom:0.4rem;">Louisiana-rooted</h3><p class="muted">Bayou-inspired care with virtual counseling and select in-home workshops.</p></div>
@@ -546,7 +579,7 @@
         </div>
         <div class="hero-card">
           <img src="amanda-headshot.jpg" alt="Amanda Gibson, RDN, LDN" class="hero-portrait" />
-          <div class="small">Amanda Gibson, RDN, LDN</div>
+          <div class="small">Amanda Gibson, RDN, LDN<br>Registered Dietitian Nutritionist</div>
           <h3>Virtual dietitian counseling with a practical, personal approach.</h3>
           <ul class="checklist">
             <li>Virtual one-on-one sessions with a Registered Dietitian</li>
@@ -801,7 +834,7 @@
             <p>Nourished Bayou Nutrition provides virtual nutrition counseling for adults looking for realistic, professional support from a Registered Dietitian Nutritionist. If you're searching for a virtual dietitian in Louisiana, online nutrition counseling, or one-on-one nutrition support that feels practical and personal, this practice is designed to meet you where you are.</p>
           </div>
           <div class="card">
-            <p>Based in South Louisiana and serving clients virtually, Amanda Gibson, RDN, LDN offers individualized counseling rooted in sustainable habits, supportive guidance, and everyday nourishment. Nourished Bayou Kitchen workshops are a separate in-home service for small groups who want a hands-on food experience.</p>
+            <p>Based in South Louisiana, Amanda Gibson, RDN, LDN provides individualized virtual counseling focused on sustainable habits and practical nutrition guidance. Nourished Bayou Kitchen workshops are a separate in-home service for small groups who want a hands-on food experience.</p>
           </div>
         </div>
       </div>
@@ -860,11 +893,14 @@
               <script src="https://widget-cdn.simplepractice.com/assets/integration-1.0.js"></script>
             </div>
             <a class="btn btn-secondary" href="#services">Learn About Services</a>
+            <p style="font-family:Arial, Helvetica, sans-serif; font-size:0.9rem; color:#5f6c7b; margin-top:0.6rem;">Discovery calls are brief, pressure-free conversations to help determine the best next step.</p>
           </div>
         </div>
       </div>
     </section>
   </main>
+
+  <a href="#contact" class="floating-book">Book a Discovery Call</a>
 
   <footer>
     <div class="container">
